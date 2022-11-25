@@ -46,9 +46,10 @@ if "ScriptMethod" in data and "ScriptMethod" in processFields:
 		addr = get_addr(scriptMethod["Address"])
 		name = scriptMethod["Name"]
 		set_name(addr, name)
-		signature = scriptMethod["Signature"]
-		if apply_type(addr, parse_decl(signature, 0), 1) == False:
-			print("apply_type failed:", hex(addr), signature)
+		if scriptMethod["Signature"] is not None:
+			signature = scriptMethod["Signature"]
+			if apply_type(addr, parse_decl(signature, 0), 1) == False:
+				print("apply_type failed:", hex(addr), signature)
 
 if "ScriptString" in data and "ScriptString" in processFields:
 	index = 1

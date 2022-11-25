@@ -149,8 +149,9 @@ if "ScriptMethod" in data and "ScriptMethod" in processFields:
 	scriptMethods = data["ScriptMethod"]
 	for scriptMethod in scriptMethods:
 		addr = get_addr(scriptMethod["Address"])
-		sig = scriptMethod["Signature"][:-1].encode("utf-8")
-		name = scriptMethod["Name"].encode("utf-8")
-		set_sig(addr, name, sig)
+		if scriptMethod["Signature"] is not None:
+			sig = scriptMethod["Signature"][:-1].encode("utf-8")
+			name = scriptMethod["Name"].encode("utf-8")
+			set_sig(addr, name, sig)
 
 print 'Script finished!'
